@@ -222,7 +222,7 @@ func apiUnsecSave(r *http.Request) (responseCode int, response []byte) {
 							HashedKey: fmt.Sprintf("%x", sha256.Sum256([]byte(randKey))),
 						}
 
-						log.Printf("paylaod -> storage: %v, Hashedkey: %v, Duration: %v\n", newMessage.Message, newMessage.HashedKey, payload.Duration)
+						log.Printf("payload -> storage: %v, Hashedkey: %v, Duration: %v\n", newMessage.Message, newMessage.HashedKey, payload.Duration)
 						valueToStore, _ := json.Marshal(newMessage)
 						storeKey, err := saveToStorage(valueToStore, time.Duration(payload.Duration)*time.Second)
 						if err == nil {
@@ -280,7 +280,7 @@ func apiSaveSecret(r *http.Request) (responseCode int, response []byte) {
 					payload.Duration = defaultDuration
 				}
 
-				log.Printf("paylaod -> storage: %v, Hashedkey: %v, Duration: %v\n", payload.SecretMessage, payload.HashedKey, payload.Duration)
+				log.Printf("payload -> storage: %v, Hashedkey: %v, Duration: %v\n", payload.SecretMessage, payload.HashedKey, payload.Duration)
 				valueToStore, _ := json.Marshal(newMessage)
 				storeKey, err := saveToStorage(valueToStore, time.Duration(payload.Duration)*time.Second)
 				if err == nil {
